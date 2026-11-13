@@ -1,7 +1,7 @@
 # Daily Naruto "Shinobi Quiz" TikTok posts
 
 Each daily run makes **two** Naruto "Guess That Character" photo carousels and schedules them in Metricool
-for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because TikTok takes ~10 min to process a carousel, so posts appear around 12:00 and 8:00) on TikTok account Naruto.quiz.hun (Metricool brand "Naruto Quiz Hun", blogId `8075815`). NEVER use blogId 7999182: that is the owner's separate One Piece account and must not be touched.
+for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because TikTok takes ~10 min to process a carousel, so posts appear around 12:00 PM (noon) and 12:00 AM (midnight)) on TikTok account Naruto.quiz.hun (Metricool brand "Naruto Quiz Hun", blogId `8075815`). NEVER use blogId 7999182: that is the owner's separate One Piece account and must not be touched.
 
 ## Fixed pieces (never change these)
 - **Slide 1, the cover:** `slides/cover.jpg`. It's the owner's chosen Naruto cover image with the title overlaid (source art: `templates/cover_art.jpg`). Use this exact file every time; never re-render or redraw it.
@@ -55,7 +55,7 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
    - **photoCoverIndex:** 0
    - **autoAddMusic:** true. REQUIRED on every post, so TikTok attaches a trending sound to the carousel; posts without it publish silent. The owner wants sound on every post. (The Metricool API can't pick a specific song for TikTok; only this random-music option is available.)
    - **media**, in this order: `.../slides/cover.jpg`, then slide_2 … slide_7 of that character
-   - **times:** 11:50 and 19:50 America/New_York that day (NOT 12:00/20:00; the 10-minute lead covers TikTok processing).
+   - **times:** 11:50 and 23:50 America/New_York that day (NOT 12:00/00:00; the 10-minute lead covers TikTok processing). Both slots belong to the same calendar day as the run.
      - If a slot is less than 10 minutes away or already past, skip it, and make only as many characters as there are open slots.
      - First call `getScheduledPosts` for that day with blogId `8075815` (only this brand); if a slot already has a TikTok post, don't add another.
    - **tiktokData.title (required by Metricool):** `Shinobi Quiz: B-RANK MISSION 📜` for the HARD post, `Shinobi Quiz: S-RANK MISSION 🔥📜` for the EXTREME post. Never put the answer in the title.
@@ -71,7 +71,7 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
      - the rank brag ladder matching the slides: scroll 1 = Kage level, 2 = Jonin, 3 = Chunin, 4 = Genin, 5 = back to the Academy
      - "tag your squad / your teammate who thinks they know every shinobi"
      - "which shinobi should be the next target?"
-     - "Follow for a new mission every day at 12 PM and 8 PM ET."
+     - "Follow for a new mission every day at 12 PM and 12 AM ET."
      Use only these emojis, sparingly: 📜 🔥 🍥 🥷 🎯 🍃. Example of the voice (do not copy verbatim):
      `📜 MISSION BRIEFING: S-RANK 🔥 Your target today is a face most fans forgot the second their arc ended, but they mattered more than you think. Intel has been split across 5 scrolls, hardest to easiest, so unroll every one before you lock in. Drop your guess AND the scroll number that gave it away in the comments 🎯 Answer gets pinned once the mission ends, so no edits after the reveal. Rules of engagement: no peeking, no copy ninja tactics, no search engine jutsu. Your rank depends on where you cracked it: scroll 1 = Kage level, scroll 2 = Jonin, scroll 3 = Chunin, scroll 4 = Genin, scroll 5 = straight back to the Academy 🥷 ...`
    - **firstCommentText:** leave empty. Don't reveal the answer.
