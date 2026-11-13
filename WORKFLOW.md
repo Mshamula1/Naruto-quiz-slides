@@ -1,4 +1,4 @@
-# Daily "Guess That Character" TikTok posts
+# Daily Naruto "Shinobi Quiz" TikTok posts
 
 Each daily run makes **two** Naruto "Guess That Character" photo carousels and schedules them in Metricool
 for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because TikTok takes ~10 min to process a carousel, so posts appear around 12:00 and 8:00) on TikTok account Naruto.quiz.hun (Metricool brand "Naruto Quiz Hun", blogId `8075815`). NEVER use blogId 7999182: that is the owner's separate One Piece account and must not be touched.
@@ -12,7 +12,7 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
 ## Steps for each run
 1. **Pick 2 characters** from Naruto / Naruto Shippuden (the original series; Boruto-only characters are out) that are NOT in `used.txt`.
    - Lean niche and hard: side characters and one-arc characters, not Team 7 or the most famous Hokage/Akatsuki leads.
-   - Make the two posts different difficulty levels: one "HARD MODE" and one "EXTREME MODE".
+   - Make the two posts different difficulty levels: one "B-RANK MISSION" (hard) and one "S-RANK MISSION" (extreme).
 2. **Write 5 clues per character,** ordered hardest to easiest.
    - Clue 1 is obscure trivia; clue 5 is a near-giveaway (an epithet or iconic moment).
    - **Verify every clue with WebSearch** (Naruto wiki / Narutopedia on fandom) before using it. If a fact can't be verified, drop it.
@@ -58,17 +58,22 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
    - **times:** 11:50 and 19:50 America/New_York that day (NOT 12:00/20:00; the 10-minute lead covers TikTok processing).
      - If a slot is less than 10 minutes away or already past, skip it, and make only as many characters as there are open slots.
      - First call `getScheduledPosts` for that day with blogId `8075815` (only this brand); if a slot already has a TikTok post, don't add another.
-   - **tiktokData.title (required by Metricool):** `Guess That Character: HARD MODE 💀` or `Guess That Character: EXTREME MODE 💀💀`. Never put the answer in the title.
-   - **Caption: always a LONG description,** 1,000–1,800 characters (owner's standing request), no line breaks (the TikTok API strips them), ending with
-     `#naruto #narutoshippuden #guessthecharacter #animequiz #anime #animetiktok`.
-     Fill the length with engagement copy, not answer hints: a vague teaser about the character type (never names, villages, clans, teams or jutsu that give it away), how the clues get easier, a "no googling" challenge, a "got it on clue 1 = genius" brag prompt, a tag-a-friend line, and "Follow for a new Guess That Character quiz every day at 12 PM and 8 PM ET."
-     It must still include the style of the earlier captions:
-     - a mode label ("HARD MODE 💀" / "EXTREME MODE 💀💀")
-     - a challenge hook
-     - "swipe through all 5 clues"
-     - "comment your answer AND which clue you got it on"
-     - "I'll pin the answer later"
-     - "who should I do next?"
+   - **tiktokData.title (required by Metricool):** `Shinobi Quiz: B-RANK MISSION 📜` for the HARD post, `Shinobi Quiz: S-RANK MISSION 🔥📜` for the EXTREME post. Never put the answer in the title.
+   - **Caption: the Naruto account's OWN "mission briefing" voice.** It must NOT reuse the One Piece account's wording ("Guess That Character", "HARD MODE 💀", "swipe through all 5 clues", "I'll pin the answer later", "who should I do next?", "got it on clue 1 = genius", skull emojis). Always a LONG description, 1,000–1,800 characters (owner's standing request), no line breaks (the TikTok API strips them), ending with
+     `#naruto #narutoshippuden #narutoquiz #animequiz #shinobi #animetiktok`.
+     Write it as a ninja mission briefing. It must include, in your own fresh wording each day (vary the sentences; don't paste the same caption twice):
+     - the mission rank up front ("📜 MISSION BRIEFING: B-RANK" / "📜 MISSION BRIEFING: S-RANK 🔥")
+     - a target teaser about the character type that gives nothing away (never names, villages, clans, teams or jutsu)
+     - "5 scrolls, hardest to easiest" (unroll / open every scroll)
+     - "drop your guess AND the scroll number that gave it away"
+     - "answer gets pinned once the mission ends"
+     - a no-googling line in ninja terms (e.g. "no peeking, no copy ninja tactics, no search engine jutsu")
+     - the rank brag ladder matching the slides: scroll 1 = Kage level, 2 = Jonin, 3 = Chunin, 4 = Genin, 5 = back to the Academy
+     - "tag your squad / your teammate who thinks they know every shinobi"
+     - "which shinobi should be the next target?"
+     - "Follow for a new mission every day at 12 PM and 8 PM ET."
+     Use only these emojis, sparingly: 📜 🔥 🍥 🥷 🎯 🍃. Example of the voice (do not copy verbatim):
+     `📜 MISSION BRIEFING: S-RANK 🔥 Your target today is a face most fans forgot the second their arc ended, but they mattered more than you think. Intel has been split across 5 scrolls, hardest to easiest, so unroll every one before you lock in. Drop your guess AND the scroll number that gave it away in the comments 🎯 Answer gets pinned once the mission ends, so no edits after the reveal. Rules of engagement: no peeking, no copy ninja tactics, no search engine jutsu. Your rank depends on where you cracked it: scroll 1 = Kage level, scroll 2 = Jonin, scroll 3 = Chunin, scroll 4 = Genin, scroll 5 = straight back to the Academy 🥷 ...`
    - **firstCommentText:** leave empty. Don't reveal the answer.
 9. **Record:**
    - Append both names to `used.txt` with the date and scheduled time.
