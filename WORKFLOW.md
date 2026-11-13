@@ -5,8 +5,9 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
 
 ## Fixed pieces (never change these)
 - **Slide 1, the cover:** `slides/cover.jpg`. It's the owner's chosen Naruto cover image with the title overlaid (source art: `templates/cover_art.jpg`). Use this exact file every time; never re-render or redraw it.
-- **Slide 7, the ending:** the "WHO DO YOU THINK IT WAS?" slide. `templates/build.py` produces it identically each run.
-- **Layout and style:** `templates/base.html` (CSS, cover, final) and the clue-section shell in `templates/example_clues.html`.
+- **Slide 7, the ending:** the black "WHO WAS IT?" reveal slide with the red brush circle. `templates/build.py` produces it identically each run.
+- **Layout and style ("Ink & Washi"):** all CSS, SVG filters and the final slide live in `templates/build.py`; fonts (Anton, Oswald) are bundled in `templates/fonts/`. `templates/base.html` only holds the cover. The finished example to copy is `templates/example_naruto_clues.html`.
+- **This style must stay clearly different from the owner's One Piece account** (which uses colorful cartoon art, parchment clue cards, emoji rank badges and a yellow "?" ending). Never bring any of those elements in here.
 
 ## Steps for each run
 1. **Pick 2 characters** from Naruto / Naruto Shippuden (the original series; Boruto-only characters are out) that are NOT in `used.txt`.
@@ -17,15 +18,18 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
    - **Verify every clue with WebSearch** (Naruto wiki / Narutopedia on fandom) before using it. If a fact can't be verified, drop it.
    - Write in first person, 60–90 characters each, and wrap the key phrase in `<em>`.
    - Never use the character's name in a clue.
-3. **Write `clues_<name>.html`** with 5 `<section class="slide">` blocks, copying the structure of `templates/example_naruto_clues.html` (a finished Naruto example; `templates/example_clues.html` is an older One Piece one):
-   - header tag + "CLUE N/5"
-   - `<svg class="art" viewBox="0 0 1080 960">` illustration
-   - parchment card with "CLUE #N" ribbon and the clue text
-   - rank badge: 🧠 GENIUS / 🔥 TRUE FAN / 😎 SOLID / 👍 NOT BAD / 😅 ...it's ok
-   - swipe label: "next clue →" ×3, "last clue →", "answer time →"
-   - Give each slide its own color scheme. Shared SVG defs available from build.py: `#parch #roll #gold #cane #steel2 #grille #dropsh #fogblur #stormsea #bluesea #rope`.
-   - JS helpers available: `#laurel #candles #snow #chests #xgrid #rows #tally #crowd`.
-4. **ART RULE (strict).** Illustrations must be ORIGINAL drawings of generic objects, places, animals or ideas: a scroll, a forest at night, a bowl of noodles, a toad, a mountain village, a full moon, a stone bridge, and so on. Style them as bold ninja-adventure cartoon art: thick ink outlines, gradients, speed lines, smoke puffs, comic bursts. (The shared defs/helpers in build.py are generic and can still be used.)
+3. **Write `clues_<name>.html`** with 5 `<section class="slide ink">` blocks, copying the structure of `templates/example_naruto_clues.html` exactly:
+   - `<!--PAPER-->` placeholder first (build.py swaps in the washi paper texture)
+   - optional `<div class="sun">` red circle placed behind the art (vary its size/position, or leave it out)
+   - red hanko stamp `<div class="stamp"><b>CLUE</b><i>N/5</i></div>` and the vertical `<div class="label">GUESS THAT CHARACTER</div>`
+   - `<svg class="art" viewBox="0 0 1080 900">` illustration (keep the right ~120px clear for the vertical label)
+   - `<!--BAND-->` placeholder (build.py swaps in the black brush-stroke band), then `<div class="cluebox"><div class="num">01 — HARDEST</div><div class="clue">…</div></div>` (numbers: "01 — HARDEST", "02", "03", "04", "05 — EASIEST")
+   - level line `<div class="lvl">GOT IT HERE? <span>…</span></div>`: KAGE LEVEL / JONIN / CHUNIN / GENIN / ACADEMY
+   - swipe line: "KEEP SWIPING →" ×3, "LAST CLUE NEXT →", "THE REVEAL →"
+   - No emoji anywhere on clue slides.
+4. **ART RULE (strict).** Illustrations must be ORIGINAL drawings of generic objects, places, animals or ideas: a scroll, a forest at night, a bowl of noodles, a toad, a mountain village, a full moon, a stone bridge, a cargo ship, and so on.
+   - **Style: Japanese sumi-ink.** Black ink (`#141210`) on cream paper, ONE accent color only (vermilion `#d8361f` / `#ff6a3d`). Bold silhouettes and brush strokes, soft gray ink washes. No gradients other than `#vsun`, no drop shadows, no other colors, no cartoon outlines-with-color-fill.
+   - Put `filter="url(#brush)"` on ink strokes and silhouettes, `filter="url(#roughen)"` on red shapes and stamps, and `filter="url(#wash)"` (with ~.12–.25 opacity) on gray background washes. Available defs: `#brush #roughen #wash #grain #fibers #vsun #mist`.
    - **Never** draw any Naruto character: no faces, recognizable silhouettes, outfits or hairstyles.
    - **Never** draw their signature items or designs: no forehead protectors/headbands or village symbols (Leaf, Sand, Mist, etc.), no Sharingan/Rinnegan/Byakugan or other eye patterns, no Akatsuki red-cloud design, no Uzumaki swirl crest, no clan crests, no named weapons, no curse marks or seals, no Ichiraku sign, and no series logo.
    - Use no official artwork or images from the web.
@@ -33,9 +37,9 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
    - `cd templates && python3 build.py ../work/clues_<name>.html ../work/<name>.html`
    - `python3 shoot.py ../work/<name>.html ../work/<name>`
 6. **Check:** make a side-by-side contact sheet of slides 2–7 and look at it. Look for:
-   - text overflowing cards, banners or bubbles
+   - text overflowing the black band or highlights cutting into neighbouring lines
    - elements cut off at the edges
-   - badges covering text
+   - the art running under the vertical label or the stamp
    - anything that depicts a character
 
    Fix and re-render as needed.
