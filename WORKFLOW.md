@@ -17,7 +17,7 @@ for **11:50 AM** and **7:50 PM America/New_York** (10 minutes early, because Tik
    - **Verify every clue with WebSearch** (Naruto wiki / Narutopedia on fandom) before using it. If a fact can't be verified, drop it.
    - Write in first person, 60–90 characters each, and wrap the key phrase in `<em>`.
    - Never use the character's name in a clue.
-3. **Write `clues_<name>.html`** with 5 `<section class="slide">` blocks, copying the structure of `templates/example_clues.html`:
+3. **Write `clues_<name>.html`** with 5 `<section class="slide">` blocks, copying the structure of `templates/example_naruto_clues.html` (a finished Naruto example; `templates/example_clues.html` is an older One Piece one):
    - header tag + "CLUE N/5"
    - `<svg class="art" viewBox="0 0 1080 960">` illustration
    - parchment card with "CLUE #N" ribbon and the clue text
