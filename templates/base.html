@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:Inter,sans-serif}
+.slide{width:1080px;height:1920px;position:relative;overflow:hidden;color:#fff}
+.rays{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 32%,rgba(255,255,255,.07) 0deg 4deg,transparent 4deg 12deg);pointer-events:none}
+.dots{position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.10) 2.2px,transparent 2.8px) 0 0/24px 24px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 45%,transparent 70%,#000 100%);pointer-events:none}
+.stroke{text-shadow:0 4px 0 #000,0 -4px 0 #000,4px 0 0 #000,-4px 0 0 #000,4px 4px 0 #000,-4px 4px 0 #000,4px -4px 0 #000,-4px -4px 0 #000,0 14px 30px rgba(0,0,0,.6)}
+/* header */
+.head{position:absolute;top:96px;left:64px;right:64px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.tag{background:#fff;color:#111;font-weight:900;font-size:30px;letter-spacing:1px;padding:14px 26px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.clueN{background:#ffd34d;color:#111;font-weight:900;font-size:34px;padding:14px 26px;border-radius:16px;border:4px solid #111;transform:rotate(3deg);box-shadow:6px 6px 0 #111}
+/* illustration */
+.art{position:absolute;left:0;top:210px;width:1080px;height:960px}
+/* clue card */
+.card{position:absolute;left:58px;width:870px;top:1170px;z-index:5;transform:rotate(-1.6deg)}
+.paper{background:#f4e4c1;color:#2b1a0e;padding:58px 56px 54px;box-shadow:12px 14px 0 rgba(0,0,0,.55);
+  clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 2.5%,37% .5%,46% 2%,55% 0,64% 2.5%,73% .5%,82% 2%,91% 0,100% 2%,99% 22%,100% 45%,98.8% 70%,100% 97%,92% 100%,83% 98%,74% 100%,64% 97.5%,54% 100%,44% 98%,34% 100%,24% 97.5%,14% 100%,5% 98%,0 100%,1% 75%,0 50%,1.2% 26%);
+  background-image:radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.5),transparent 50%),radial-gradient(ellipse at 90% 90%,rgba(140,90,40,.25),transparent 55%)}
+.ribbon{display:inline-block;background:#c8262c;color:#fff;font-weight:900;font-size:28px;letter-spacing:3px;padding:8px 18px;border-radius:6px;margin-bottom:22px}
+.clue{font-weight:900;font-size:66px;line-height:1.08;letter-spacing:-1.5px}
+.clue em{font-style:normal;color:#c8262c}
+.rank{position:absolute;right:-18px;bottom:-40px;background:#111;color:#fff;font-weight:800;font-size:28px;padding:12px 20px;border-radius:14px;transform:rotate(4deg);border:3px solid #ffd34d}
+.swipe{position:absolute;left:64px;top:1700px;font-weight:800;font-size:34px;color:rgba(255,255,255,.85);z-index:5}
+.swipe b{color:#ffd34d}
+</style></head>
+<body>
+
+<!-- 1. COVER -->
+<section class="slide" id="s1" style="background:#000">
+  <img src="cover_art.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.18) 26%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 62%,rgba(0,0,0,.7) 100%)"></div>
+  <div class="dots" style="opacity:.5"></div>
+  <div style="position:absolute;top:70px;left:0;right:0;text-align:center">
+    <div class="tag" style="display:inline-block;font-size:30px">NARUTO EDITION 🍥</div>
+    <div class="stroke" style="font-weight:900;font-size:118px;line-height:.92;letter-spacing:-4px;margin-top:26px;transform:rotate(-3deg)">GUESS THAT</div>
+    <div class="stroke" style="font-weight:900;font-size:128px;line-height:1;letter-spacing:-4px;color:#ff8a1f;transform:rotate(-3deg);margin-top:4px">CHARACTER</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;top:1360px;text-align:center"><div style="display:inline-block;background:#e8541e;color:#fff;font-weight:900;font-size:40px;padding:16px 30px;border-radius:16px;border:4px solid #111;box-shadow:8px 8px 0 #111;transform:rotate(2deg)">5 clues · hardest first 🧠</div></div>
+  <div class="stroke" style="position:absolute;left:0;right:0;top:1520px;text-align:center;font-weight:900;font-size:52px;line-height:1.15">only REAL fans get it<br>on clue 1 👀</div>
+  <div class="swipe" style="top:1720px;left:0;right:0;text-align:center">swipe <b>→</b></div>
+</section>
+
+<!-- 2. CLUE 1: WHITE CITY -->
+<section class="slide" style="background:radial-gradient(ellipse at 50% 30%,#3b5d86,#0c1a2e 70%)">
+  <div class="rays"></div><div class="dots"></div>
+  <div class="head"><div class="tag">GUESS THAT CHARACTER</div><div class="clueN">CLUE 1/5</div></div>
+  <svg class="art" id="city" viewBox="0 0 1080 960"></svg>
+  <div class="card"><div class="paper"><div class="ribbon">CLUE #1</div>
+    <div class="clue">My hometown was called the <em>“White City”</em>… and it doesn’t exist anymore.</div></div>
+    <div class="rank">get it here = 🧠 GENIUS</div></div>
+  <div class="swipe">next clue <b>→</b></div>
+</section>
+
+<!-- 3. CLUE 2: BREAD -->
+<section class="slide" style="background:radial-gradient(ellipse at 50% 32%,#ffb547,#d9521f 55%,#5a1608 100%)">
+  <div class="rays" style="opacity:1.6"></div><div class="dots"></div>
+  <div class="head"><div class="tag">GUESS THAT CHARACTER</div><div class="clueN">CLUE 2/5</div></div>
+  <svg class="art" viewBox="0 0 1080 960">
+    <defs>
+      <radialGradient id="crust" cx="45%" cy="35%" r="70%"><stop offset="0" stop-color="#f6c46a"/><stop offset=".55" stop-color="#d98a2b"/><stop offset="1" stop-color="#8f4a12"/></radialGradient>
+      <linearGradient id="cut" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff3d1"/><stop offset="1" stop-color="#f3d79a"/></linearGradient>
+    </defs>
+    <!-- shadow -->
+    <ellipse cx="540" cy="760" rx="330" ry="46" fill="rgba(0,0,0,.35)"/>
+    <!-- loaf -->
+    <g stroke="#2b1408" stroke-width="12" stroke-linejoin="round">
+      <path d="M215 700 C200 470 360 330 540 330 C720 330 880 470 865 700 C780 760 300 760 215 700Z" fill="url(#crust)"/>
+      <!-- slice falling off the side -->
+      <g transform="rotate(14 870 640)"><path d="M820 520 C900 520 950 590 945 700 L800 708 C790 610 790 545 820 520Z" fill="url(#cut)"/></g>
+    </g>
+    <g stroke="#7a3a0c" stroke-width="10" fill="none" stroke-linecap="round" opacity=".9">
+      <path d="M330 470 C380 430 450 420 500 440"/><path d="M380 560 C450 515 540 505 610 530"/><path d="M470 650 C550 610 640 600 720 625"/><path d="M590 420 C640 405 700 420 740 450"/>
+    </g>
+    <g fill="#fff" opacity=".55"><ellipse cx="420" cy="420" rx="60" ry="16" transform="rotate(-20 420 420)"/></g>
+    <!-- crumbs -->
+    <g fill="#d98a2b" stroke="#2b1408" stroke-width="5"><circle cx="250" cy="790" r="12"/><circle cx="300" cy="815" r="8"/><circle cx="820" cy="800" r="10"/><circle cx="760" cy="822" r="7"/></g>
+    <!-- NO sign -->
+    <g stroke="#111" stroke-width="70" fill="none" opacity=".35" transform="translate(10 12)"><circle cx="540" cy="560" r="360"/><line x1="285" y1="305" x2="795" y2="815"/></g>
+    <g stroke="#e3242b" stroke-width="58" fill="none"><circle cx="540" cy="560" r="360"/><line x1="285" y1="305" x2="795" y2="815" stroke-linecap="round"/></g>
+    <!-- comic burst -->
+    <g transform="translate(205 175) rotate(-12)">
+      <polygon points="0,-120 30,-60 95,-95 70,-30 140,-10 75,20 110,85 40,55 10,125 -15,55 -90,95 -60,25 -135,0 -65,-30 -100,-95 -30,-62" fill="#fff" stroke="#111" stroke-width="10"/>
+      <text x="0" y="22" text-anchor="middle" font-family="Inter" font-weight="900" font-size="58" fill="#e3242b">EW!</text>
+    </g>
+  </svg>
+  <div class="card"><div class="paper"><div class="ribbon">CLUE #2</div>
+    <div class="clue">I absolutely <em>HATE</em> bread. Don’t even offer it to me. 🍞</div></div>
+    <div class="rank">get it here = 🔥 TRUE FAN</div></div>
+  <div class="swipe">next clue <b>→</b></div>
+</section>
+
+<!-- 4. CLUE 3: SWORD -->
+<section class="slide" style="background:radial-gradient(ellipse at 50% 35%,#5b1236,#1a0614 60%,#050106 100%)">
+  <div class="rays" style="background:repeating-conic-gradient(from 0deg at 50% 32%,rgba(255,80,120,.10) 0deg 3deg,transparent 3deg 10deg)"></div><div class="dots"></div>
+  <div class="head"><div class="tag">GUESS THAT CHARACTER</div><div class="clueN">CLUE 3/5</div></div>
+  <svg class="art" viewBox="0 0 1080 960">
+    <defs>
+      <linearGradient id="sc" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3a3a44"/><stop offset=".45" stop-color="#121218"/><stop offset="1" stop-color="#050507"/></linearGradient>
+      <linearGradient id="bl" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#cfd8e6"/><stop offset="1" stop-color="#7e8aa0"/></linearGradient>
+      <linearGradient id="gold" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffe9a0"/><stop offset=".5" stop-color="#d4a42c"/><stop offset="1" stop-color="#7a5510"/></linearGradient>
+      <pattern id="wrap" width="44" height="44" patternUnits="userSpaceOnUse"><rect width="44" height="44" fill="#1b1b22"/><path d="M0 22 L22 0 L44 22 L22 44Z" fill="#e9e4d6" stroke="#111" stroke-width="3"/></pattern>
+      <filter id="glow"><feGaussianBlur stdDeviation="10"/></filter>
+    </defs>
+    <!-- big slash arc -->
+    <path d="M60 820 C300 300 700 120 1040 110" stroke="#ff4f8b" stroke-width="60" fill="none" opacity=".35" filter="url(#glow)"/>
+    <path d="M60 820 C300 300 700 120 1040 110" stroke="#fff" stroke-width="14" fill="none" stroke-linecap="round"/>
+    <!-- sparks -->
+    <g fill="#ffd34d"><circle cx="260" cy="430" r="7"/><circle cx="330" cy="370" r="5"/><circle cx="820" cy="190" r="8"/><circle cx="900" cy="250" r="5"/><circle cx="700" cy="180" r="4"/><circle cx="200" cy="560" r="5"/></g>
+    <!-- the sword (diagonal) -->
+    <g transform="translate(540 500) rotate(-38)">
+      <!-- scabbard -->
+      <rect x="-60" y="-34" width="560" height="68" rx="34" fill="url(#sc)" stroke="#000" stroke-width="8"/>
+      <rect x="40" y="-22" width="420" height="10" rx="5" fill="#fff" opacity=".18"/>
+      <rect x="340" y="-36" width="26" height="72" rx="6" fill="url(#gold)" stroke="#000" stroke-width="5"/>
+      <rect x="470" y="-36" width="40" height="72" rx="14" fill="url(#gold)" stroke="#000" stroke-width="5"/>
+      <!-- drawn blade section -->
+      <path d="M-260 -24 L-60 -24 L-60 24 L-260 24 Z" fill="url(#bl)" stroke="#000" stroke-width="6"/>
+      <path d="M-255 -6 L-62 -6" stroke="#fff" stroke-width="5" opacity=".9"/>
+      <!-- habaki + round guard -->
+      <rect x="-290" y="-30" width="34" height="60" rx="6" fill="url(#gold)" stroke="#000" stroke-width="5"/>
+      <ellipse cx="-305" cy="0" rx="22" ry="92" fill="url(#gold)" stroke="#000" stroke-width="7"/>
+      <ellipse cx="-305" cy="0" rx="9" ry="56" fill="#3a2a08" opacity=".6"/>
+      <!-- hilt -->
+      <rect x="-560" y="-30" width="250" height="60" rx="14" fill="url(#wrap)" stroke="#000" stroke-width="7"/>
+      <rect x="-590" y="-34" width="40" height="68" rx="14" fill="url(#gold)" stroke="#000" stroke-width="6"/>
+      <!-- glint -->
+      <g transform="translate(-160 -24)"><path d="M0 -40 L8 -8 L40 0 L8 8 L0 40 L-8 8 L-40 0 L-8 -8Z" fill="#fff"/></g>
+    </g>
+    <!-- size comparison -->
+    <g font-family="Inter" font-weight="900" fill="#fff">
+      <line x1="930" y1="230" x2="930" y2="860" stroke="#ffd34d" stroke-width="8" stroke-dasharray="20 14"/>
+      <polygon points="930,210 905,250 955,250" fill="#ffd34d"/><polygon points="930,880 905,840 955,840" fill="#ffd34d"/>
+      <text x="905" y="560" font-size="40" text-anchor="end" transform="rotate(-90 905 560)" fill="#ffd34d">≈ MY HEIGHT</text>
+    </g>
+  </svg>
+  <div class="card"><div class="paper"><div class="ribbon">CLUE #3</div>
+    <div class="clue">My main weapon is a <em>sword</em>… almost as tall as I am. ⚔️</div></div>
+    <div class="rank">get it here = 😎 SOLID</div></div>
+  <div class="swipe">next clue <b>→</b></div>
+</section>
+
+<!-- 5. CLUE 4: WORST GENERATION -->
+<section class="slide" style="background:repeating-linear-gradient(90deg,#5a341b 0 128px,#4b2a15 128px 134px,#61391e 134px 262px,#3e2211 262px 268px)">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(255,190,110,.35),rgba(0,0,0,.65) 75%)"></div><div class="dots" style="opacity:.6"></div>
+  <div class="head"><div class="tag">GUESS THAT CHARACTER</div><div class="clueN">CLUE 4/5</div></div>
+  <svg class="art" viewBox="0 0 1080 960">
+    <defs><filter id="sh"><feDropShadow dx="14" dy="18" stdDeviation="6" flood-opacity=".55"/></filter></defs>
+    <!-- background faded posters -->
+    <g opacity=".45" filter="url(#sh)">
+      <g transform="translate(90 170) rotate(-9)"><rect width="300" height="420" fill="#e9d6ad"/><text x="150" y="80" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="62" fill="#4a2d16">WANTED</text><rect x="40" y="110" width="220" height="190" fill="#bfa77b"/></g>
+      <g transform="translate(700 120) rotate(8)"><rect width="300" height="420" fill="#e9d6ad"/><text x="150" y="80" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="62" fill="#4a2d16">WANTED</text><rect x="40" y="110" width="220" height="190" fill="#bfa77b"/></g>
+      <g transform="translate(120 600) rotate(6)"><rect width="260" height="330" fill="#e9d6ad"/><text x="130" y="70" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="54" fill="#4a2d16">WANTED</text></g>
+      <g transform="translate(760 620) rotate(-7)"><rect width="260" height="330" fill="#e9d6ad"/><text x="130" y="70" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="54" fill="#4a2d16">WANTED</text></g>
+    </g>
+    <!-- main poster -->
+    <g transform="translate(540 500) rotate(-3)" filter="url(#sh)">
+      <rect x="-300" y="-420" width="600" height="840" fill="#f1dfb6" stroke="#6b4423" stroke-width="6"/>
+      <rect x="-300" y="-420" width="600" height="840" fill="url(#none)"/>
+      <text x="0" y="-300" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="122" fill="#3a2210" letter-spacing="2">WANTED</text>
+      <rect x="-230" y="-260" width="460" height="400" fill="#d8c294" stroke="#3a2210" stroke-width="8"/>
+      <!-- generic silhouette -->
+      <path d="M-150 140 C-150 40 -90 0 0 0 C90 0 150 40 150 140 Z" fill="#2a1a0c"/>
+      <circle cx="0" cy="-90" r="88" fill="#2a1a0c"/>
+      <text x="0" y="-48" text-anchor="middle" font-family="Inter" font-weight="900" font-size="150" fill="#ffd34d" stroke="#111" stroke-width="6">?</text>
+      <text x="0" y="215" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="54" fill="#3a2210">DEAD OR ALIVE</text>
+      <text x="0" y="300" text-anchor="middle" font-family="DejaVu Serif" font-weight="bold" font-size="50" fill="#3a2210">REWARD: ???,???</text>
+      <!-- nail -->
+      <circle cx="0" cy="-392" r="14" fill="#777" stroke="#222" stroke-width="5"/>
+      <!-- stamp -->
+      <g transform="translate(150 -195) rotate(14) scale(.8)"><rect x="-150" y="-50" width="300" height="100" rx="12" fill="none" stroke="#c8262c" stroke-width="10"/><text x="0" y="22" text-anchor="middle" font-family="Inter" font-weight="900" font-size="54" fill="#c8262c">WORST</text></g>
+    </g>
+  </svg>
+  <div class="card"><div class="paper"><div class="ribbon">CLUE #4</div>
+    <div class="clue">I’m part of the <em>“Worst Generation.”</em> 🏴‍☠️</div></div>
+    <div class="rank">get it here = 👍 NOT BAD</div></div>
+  <div class="swipe">last clue <b>→</b></div>
+</section>
+
+<!-- 6. CLUE 5: SURGEON -->
+<section class="slide" style="background:radial-gradient(ellipse at 50% 35%,#0f4a4a,#04191c 65%,#010607 100%)">
+  <div style="position:absolute;inset:0;background:linear-gradient(rgba(60,255,170,.07) 2px,transparent 2px) 0 0/60px 60px,linear-gradient(90deg,rgba(60,255,170,.07) 2px,transparent 2px) 0 0/60px 60px"></div>
+  <div class="dots" style="opacity:.5"></div>
+  <div class="head"><div class="tag">GUESS THAT CHARACTER</div><div class="clueN">CLUE 5/5</div></div>
+  <svg class="art" viewBox="0 0 1080 960">
+    <defs><filter id="g2"><feGaussianBlur stdDeviation="9"/></filter>
+      <linearGradient id="steel" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#c3ccd8"/><stop offset="1" stop-color="#6f7b8c"/></linearGradient></defs>
+    <!-- monitor frame -->
+    <rect x="60" y="120" width="960" height="460" rx="40" fill="rgba(0,0,0,.45)" stroke="#2fe08f" stroke-width="6" opacity=".9"/>
+    <text x="100" y="185" font-family="Inter" font-weight="800" font-size="34" fill="#2fe08f">HR</text>
+    <text x="980" y="185" font-family="Inter" font-weight="900" font-size="48" fill="#ff4d4d" text-anchor="end">0 bpm</text>
+    <!-- ECG: beats then flatline -->
+    <path id="ecg" d="M90 380 L200 380 L225 340 L250 380 L280 380 L300 420 L330 210 L360 470 L385 380 L470 380 L495 345 L520 380 L545 380 L565 420 L595 230 L625 460 L650 380 L1000 380"
+      fill="none" stroke="#2fe08f" stroke-width="22" opacity=".45" filter="url(#g2)"/>
+    <path d="M90 380 L200 380 L225 340 L250 380 L280 380 L300 420 L330 210 L360 470 L385 380 L470 380 L495 345 L520 380 L545 380 L565 420 L595 230 L625 460 L650 380 L1000 380"
+      fill="none" stroke="#7dffbf" stroke-width="9" stroke-linejoin="round"/>
+    <circle cx="1000" cy="380" r="12" fill="#fff"/>
+    <g transform="translate(790 300) rotate(-6)"><text font-family="Inter" font-weight="900" font-size="54" fill="#fff" stroke="#111" stroke-width="3">beeeeeep</text></g>
+    <!-- scalpel -->
+    <g transform="translate(560 760) rotate(-24)">
+      <rect x="-380" y="-22" width="420" height="44" rx="12" fill="url(#steel)" stroke="#111" stroke-width="7"/>
+      <g stroke="#111" stroke-width="3" opacity=".35"><line x1="-340" y1="-22" x2="-340" y2="22"/><line x1="-300" y1="-22" x2="-300" y2="22"/><line x1="-260" y1="-22" x2="-260" y2="22"/><line x1="-220" y1="-22" x2="-220" y2="22"/></g>
+      <path d="M40 -16 L120 -16 C230 -16 330 10 360 30 C300 34 200 26 120 22 L40 22 Z" fill="url(#steel)" stroke="#111" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M130 0 C220 4 300 18 340 28" stroke="#fff" stroke-width="5" fill="none"/>
+    </g>
+    <!-- medical cross -->
+    <g transform="translate(170 790) rotate(-10)" opacity=".95"><rect x="-26" y="-80" width="52" height="160" rx="10" fill="#ff4d4d" stroke="#111" stroke-width="6"/><rect x="-80" y="-26" width="160" height="52" rx="10" fill="#ff4d4d" stroke="#111" stroke-width="6"/></g>
+  </svg>
+  <div class="card"><div class="paper"><div class="ribbon">CLUE #5</div>
+    <div class="clue">I’m a doctor… but they call me the <em>“Surgeon of Death.”</em></div></div>
+    <div class="rank">get it here = 😅 ...it’s ok</div></div>
+  <div class="swipe">answer time <b>→</b></div>
+</section>
+
+<!-- 7. FINAL -->
+<section class="slide" style="background:radial-gradient(ellipse at 50% 38%,#2c2a6e,#0c0b24 60%,#04030c 100%)">
+  <div class="rays" style="opacity:1.4"></div><div class="dots"></div>
+  <svg style="position:absolute;left:0;top:250px;width:1080px;height:820px" viewBox="0 0 1080 820">
+    <text x="560" y="720" text-anchor="middle" font-family="Inter" font-weight="900" font-size="860" fill="#111">?</text>
+    <text x="540" y="700" text-anchor="middle" font-family="Inter" font-weight="900" font-size="860" fill="#ffd34d" stroke="#111" stroke-width="18">?</text>
+    <g fill="#fff"><path d="M150 180 l10 30 30 10 -30 10 -10 30 -10 -30 -30 -10 30 -10z"/><path d="M900 120 l8 24 24 8 -24 8 -8 24 -8 -24 -24 -8 24 -8z"/><path d="M930 560 l7 20 20 7 -20 7 -7 20 -7 -20 -20 -7 20 -7z"/></g>
+  </svg>
+  <div style="position:absolute;top:150px;left:0;right:0;text-align:center"><div class="tag" style="display:inline-block">GUESS THAT CHARACTER</div></div>
+  <div class="stroke" style="position:absolute;left:0;right:0;top:1080px;text-align:center;font-weight:900;font-size:104px;line-height:.98;letter-spacing:-3px">WHO DO YOU<br>THINK IT WAS?</div>
+  <div style="position:absolute;left:0;right:0;top:1350px;text-align:center">
+    <div style="display:inline-block;background:#ffd34d;color:#111;font-weight:900;font-size:54px;padding:20px 36px;border-radius:20px;border:5px solid #111;box-shadow:10px 10px 0 #111;transform:rotate(-2deg)">Comment your answer 👇</div>
+    <div class="stroke" style="margin-top:44px;font-weight:800;font-size:40px">+ which clue you got it on 🧠</div>
+  </div>
+  <div style="position:absolute;left:0;right:0;top:1640px;text-align:center;font-weight:800;font-size:34px;color:rgba(255,255,255,.75)">answer revealed in the comments 👀</div>
+</section>
+
+<script>
+// procedural "white city" for clue 1 (generic snowy ruined town)
+(function(){
+  const s=document.getElementById('city');let h='';
+  let seed=11;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+  h+=`<defs><radialGradient id="moon"><stop offset="0" stop-color="#fffbe9"/><stop offset="1" stop-color="#dfe9f5"/></radialGradient>
+      <linearGradient id="wall" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9d6e6"/></linearGradient>
+      <filter id="blur"><feGaussianBlur stdDeviation="14"/></filter></defs>`;
+  h+=`<circle cx="760" cy="230" r="150" fill="#fff" opacity=".25" filter="url(#blur)"/><circle cx="760" cy="230" r="118" fill="url(#moon)"/>`;
+  // hill
+  h+=`<path d="M0 820 C200 640 420 600 560 600 C720 600 900 650 1080 760 L1080 960 L0 960Z" fill="#e8eff8"/>`;
+  // buildings
+  const B=[[150,640,110,200,'dome'],[255,600,90,260,'spire'],[340,570,120,250,'broken'],[455,520,100,300,'dome'],[548,470,80,360,'spire'],[625,520,120,290,'broken'],[740,560,100,240,'dome'],[835,600,90,210,'spire'],[920,650,110,170,'broken']];
+  for(const [x,y,w,hh,t] of B){
+    const top=y;
+    if(t==='broken'){
+      let pts=`${x},${top+hh} ${x},${top+30}`;for(let k=1;k<6;k++)pts+=` ${x+w*k/6},${top+(k%2?0:46)+r()*20}`;pts+=` ${x+w},${top+40} ${x+w},${top+hh}`;
+      h+=`<polygon points="${pts}" fill="url(#wall)" stroke="#2b3d55" stroke-width="6" stroke-linejoin="round"/>`;
+    }else{
+      h+=`<rect x="${x}" y="${top}" width="${w}" height="${hh}" fill="url(#wall)" stroke="#2b3d55" stroke-width="6"/>`;
+      if(t==='dome')h+=`<path d="M${x-6} ${top} A${w/2+6} ${w/2+6} 0 0 1 ${x+w+6} ${top}Z" fill="#f4f8ff" stroke="#2b3d55" stroke-width="6"/><line x1="${x+w/2}" y1="${top-w/2-6}" x2="${x+w/2}" y2="${top-w/2-46}" stroke="#2b3d55" stroke-width="6"/>`;
+      else h+=`<polygon points="${x-8},${top} ${x+w/2},${top-120} ${x+w+8},${top}" fill="#f4f8ff" stroke="#2b3d55" stroke-width="6" stroke-linejoin="round"/>`;
+    }
+    for(let wy=top+50;wy<top+hh-40;wy+=62)for(let wx=x+18;wx<x+w-22;wx+=36)
+      h+=`<path d="M${wx} ${wy+34} L${wx} ${wy+12} A10 10 0 0 1 ${wx+20} ${wy+12} L${wx+20} ${wy+34}Z" fill="${r()<.25?'#ffcf6b':'#26364d'}" opacity="${r()<.25?.9:.85}"/>`;
+  }
+  // smoke from the ruins
+  for(const [cx,cy] of [[400,540],[690,500],[970,620]])h+=`<g opacity=".35" fill="#9aa9bd"><circle cx="${cx}" cy="${cy-40}" r="34"/><circle cx="${cx+24}" cy="${cy-100}" r="44"/><circle cx="${cx+6}" cy="${cy-170}" r="54"/></g>`;
+  // snow foreground
+  h+=`<path d="M0 880 C250 820 520 860 760 840 C900 830 1000 850 1080 870 L1080 960 L0 960Z" fill="#ffffff"/>`;
+  for(let i=0;i<120;i++)h+=`<circle cx="${r()*1080}" cy="${r()*900}" r="${2+r()*7}" fill="#fff" opacity="${.4+r()*.6}"/>`;
+  // "?" on the moon
+  h+=`<text x="760" y="275" text-anchor="middle" font-family="Inter" font-weight="900" font-size="130" fill="#c3d2e6">?</text>`;
+  s.innerHTML=h;
+})();
+</script>
+</body></html>
