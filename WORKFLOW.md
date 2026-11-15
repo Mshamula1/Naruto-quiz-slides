@@ -1,6 +1,8 @@
 # Daily Naruto "Shinobi Quiz" TikTok posts
 
-Each daily run makes **two** Naruto "Guess That Character" photo carousels and schedules them in Metricool
+> **FORMAT (since 2026-11-16): narrated VIDEO posts, not photo carousels.** The owner approved the video format on 2026-11-15 ("Draft 6"). Each quiz is still built from the same Ink & Washi slides, then turned into a ~55 s 1080x1920 MP4 with a bright female quiz-host voice, captions, countdowns and music by `templates/video/`. Do not change the voice, script template, caption style or pacing without the owner's approval.
+
+Each daily run makes **two** Naruto "Guess That Character" quiz videos and schedules them in Metricool
 for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because TikTok takes ~10 min to process a carousel, so posts appear around 12:00 PM (noon) and 12:00 AM (midnight)) on TikTok account Naruto.quiz.hun (Metricool brand "Naruto Quiz Hun", blogId `8075815`). NEVER use blogId 7999182: that is the owner's separate One Piece account and must not be touched.
 
 ## Fixed pieces (never change these)
@@ -36,25 +38,28 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
 5. **Render:**
    - `cd templates && python3 build.py ../work/clues_<name>.html ../work/<name>.html`
    - `python3 shoot.py ../work/<name>.html ../work/<name>`
-6. **Check:** make a side-by-side contact sheet of slides 2–7 and look at it. Look for:
+6. **Make the video** (after build.py made `work/<name>.html`; slides are the video's frames):
+   - Once per session: `sh templates/video/setup.sh` (pip deps + Kokoro voice model from GitHub releases; prints SETUP_OK).
+   - `nohup sh templates/video/make_video.sh <name> > work/<name>_video.log 2>&1 &` then poll the log (`sleep 60; tail -3 work/<name>_video.log`) until it prints `FIN` (about 3-4 min per video; Bash calls time out at 2 min, so never run it in the foreground). Output: `work/<name>_video/<name>.mp4`.
+   - What it does: hides the clue text/swipe line to make a "blank" version of each slide, generates the narration from `templates/video/make_script.py` (fixed hook, "Clue one!"... "Last clue!", the clue read aloud exactly as on the slide, a rank call-out after each clue: Kage / Jonin / Chunin / Genin / Academy, fixed outro), voices it with Kokoro `af_heart` at speed 1.15, renders: cover with soft white captions → per clue: blank slide, clue appears as it is read, 3-2-1 "LOCK IN YOUR GUESS" countdown, red caption sticker for the rank line → "WHO WAS IT?" outro; then mixes voice + SFX + generated koto/taiko music and loudness-normalizes to -14 LUFS.
+   - Clue text is read aloud, so write clues that read naturally (no emoji, no symbols the voice can't say).
+7. **Check:** make a side-by-side contact sheet of slides 2–7 and look at it. Look for:
    - text overflowing the black band or highlights cutting into neighbouring lines
    - elements cut off at the edges
    - the art running under the vertical label or the stamp
    - anything that depicts a character
 
-   Fix and re-render as needed.
-7. **Publish the images:**
-   - Convert slides 2–7 to JPEG (quality 92). TikTok's API doesn't accept PNG.
-   - Save them to `slides/<YYYY-MM-DD>-<name>/slide_2.jpg … slide_7.jpg`.
+   Fix and re-render as needed. Also look at `work/<name>_video/check_20s.jpg` and confirm the video duration printed before FIN is 45-75 s.
+8. **Publish the video:**
+   - Copy it to `slides/<YYYY-MM-DD>-<name>/<name>.mp4` (no JPEG slides needed any more).
    - Commit and push to `main`.
-   - Confirm each `https://raw.githubusercontent.com/Mshamula1/naruto-quiz-slides/main/slides/...` URL returns HTTP 200 before scheduling.
-8. **Schedule in Metricool** with `createScheduledPost` (blogId `8075815`):
+   - Confirm `https://raw.githubusercontent.com/Mshamula1/naruto-quiz-slides/main/slides/<YYYY-MM-DD>-<name>/<name>.mp4` returns HTTP 200 before scheduling.
+9. **Schedule in Metricool** with `createScheduledPost` (blogId `8075815`):
    - **providers:** tiktok
    - **autoPublish:** true
    - **privacyOption:** PUBLIC_TO_EVERYONE
-   - **photoCoverIndex:** 0
-   - **autoAddMusic:** true. REQUIRED on every post, so TikTok attaches a trending sound to the carousel; posts without it publish silent. The owner wants sound on every post. (The Metricool API can't pick a specific song for TikTok; only this random-music option is available.)
-   - **media**, in this order: `.../slides/cover.jpg`, then slide_2 … slide_7 of that character
+   - **autoAddMusic:** false. The video already has its own narration and music (TikTok's auto-music only applies to photo posts). Do not set photoCoverIndex, videoThumbnailUrl or videoCoverMilliseconds.
+   - **media:** exactly one item, the raw.githubusercontent.com URL of that day's `<name>.mp4`.
    - **times:** 11:50 and 23:50 America/New_York that day (NOT 12:00/00:00; the 10-minute lead covers TikTok processing). Both slots belong to the same calendar day as the run.
      - If a slot is less than 10 minutes away or already past, skip it, and make only as many characters as there are open slots.
      - First call `getScheduledPosts` for that day with blogId `8075815` (only this brand); if a slot already has a TikTok post, don't add another.
@@ -62,7 +67,7 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
    - **Caption: the Naruto account's OWN "mission briefing" voice.** It must NOT reuse the One Piece account's wording ("Guess That Character", "HARD MODE 💀", "swipe through all 5 clues", "I'll pin the answer later", "who should I do next?", "got it on clue 1 = genius", skull emojis). Always a LONG description, 1,000–1,800 characters (owner's standing request), no line breaks (the TikTok API strips them), ending with
      `#naruto #narutoshippuden #narutoquiz #animequiz #shinobi #animetiktok`.
      Write it as a ninja mission briefing. It must include, in your own fresh wording each day (vary the sentences; don't paste the same caption twice):
-     - the mission rank up front ("📜 MISSION BRIEFING: B-RANK" / "📜 MISSION BRIEFING: S-RANK 🔥")
+     - the mission rank up front (and mention it's a video quiz: "watch to the end") ("📜 MISSION BRIEFING: B-RANK" / "📜 MISSION BRIEFING: S-RANK 🔥")
      - a target teaser about the character type that gives nothing away (never names, villages, clans, teams or jutsu)
      - "5 scrolls, hardest to easiest" (unroll / open every scroll)
      - "drop your guess AND the scroll number that gave it away"
@@ -75,8 +80,8 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
      Use only these emojis, sparingly: 📜 🔥 🍥 🥷 🎯 🍃. Example of the voice (do not copy verbatim):
      `📜 MISSION BRIEFING: S-RANK 🔥 Your target today is a face most fans forgot the second their arc ended, but they mattered more than you think. Intel has been split across 5 scrolls, hardest to easiest, so unroll every one before you lock in. Drop your guess AND the scroll number that gave it away in the comments 🎯 Answer gets pinned once the mission ends, so no edits after the reveal. Rules of engagement: no peeking, no copy ninja tactics, no search engine jutsu. Your rank depends on where you cracked it: scroll 1 = Kage level, scroll 2 = Jonin, scroll 3 = Chunin, scroll 4 = Genin, scroll 5 = straight back to the Academy 🥷 ...`
    - **firstCommentText:** leave empty. Don't reveal the answer.
-9. **Record:**
+10. **Record:**
    - Append both names to `used.txt` with the date and scheduled time.
    - Add the answers to `answers.md` (date, time, character, clues), so the owner can pin them.
    - Commit and push.
-10. **Report** in one short message which characters were scheduled for which times and their answers.
+11. **Report** in one short message which characters were scheduled for which times and their answers.
