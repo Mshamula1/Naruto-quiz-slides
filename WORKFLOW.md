@@ -50,10 +50,11 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
    - anything that depicts a character
 
    Fix and re-render as needed. Also look at `work/<name>_video/check_20s.jpg` and confirm the video duration printed before FIN is 45-75 s.
-8. **Publish the video:**
-   - Copy it to `slides/<YYYY-MM-DD>-<name>/<name>.mp4` (no JPEG slides needed any more).
-   - Commit and push to `main`.
-   - Confirm `https://raw.githubusercontent.com/Mshamula1/naruto-quiz-slides/main/slides/<YYYY-MM-DD>-<name>/<name>.mp4` returns HTTP 200 before scheduling.
+8. **Publish the video (auto-cleanup, owner's request):**
+   - NEVER commit .mp4 files to `main`. Videos go on the throwaway `media` branch, which is replaced on every publish, so old videos are cleared out automatically:
+     `sh templates/video/publish_media.sh <YYYY-MM-DD> <name1> [<name2>]` (prints the URLs).
+   - Publish all of the run's videos in ONE call (each call replaces the branch). This is safe because Metricool copies the video into its own storage (static.metricool.com) the moment a post is scheduled, so older videos are no longer needed.
+   - Confirm each `https://raw.githubusercontent.com/Mshamula1/naruto-quiz-slides/media/<YYYY-MM-DD>-<name>/<name>.mp4` returns HTTP 200 before scheduling, and after scheduling check the response's media is a static.metricool.com .mp4.
 9. **Schedule in Metricool** with `createScheduledPost` (blogId `8075815`):
    - **providers:** tiktok
    - **autoPublish:** true
