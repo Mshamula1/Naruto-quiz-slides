@@ -2,8 +2,10 @@
 
 > **FORMAT (since 2026-11-16 evening): 10-slide PHOTO CAROUSELS.** The owner tried narrated videos on 2026-11-16, they performed badly, and he asked to switch back to picture posts with **10 slides total**: cover + **8 clue slides** + the "WHO WAS IT?" ending. Same Ink & Washi style, same cover and ending. The video pipeline in `templates/video/` is retired; do not use it.
 
-Each daily run makes **two** Naruto "Guess That Character" 10-slide photo carousels and schedules them in Metricool
-for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because TikTok takes ~10 min to process a carousel, so posts appear around 12:00 PM (noon) and 12:00 AM (midnight)) on TikTok account Naruto.quiz.hun (Metricool brand "Naruto Quiz Hun", blogId `8075815`). NEVER use blogId 7999182: that is the owner's separate One Piece account and must not be touched.
+> **SCHEDULE (since 2026-11-16): THREE posts a day** at 12 PM, 7 PM and 12 AM ET (owner's request).
+
+Each daily run makes **three** Naruto "Guess That Character" 10-slide photo carousels and schedules them in Metricool
+for **11:50 AM**, **6:50 PM** and **11:50 PM America/New_York** (10 minutes early, because TikTok takes ~10 min to process a carousel, so posts appear around 12:00 PM (noon), 7:00 PM and 12:00 AM (midnight)) on TikTok account Naruto.quiz.hun (Metricool brand "Naruto Quiz Hun", blogId `8075815`). NEVER use blogId 7999182: that is the owner's separate One Piece account and must not be touched.
 
 ## Fixed pieces (never change these)
 - **Slide 1, the cover:** `slides/cover.jpg`. It's the owner's chosen Naruto cover image with the title overlaid (source art: `templates/cover_art.jpg`). Use this exact file every time; never re-render or redraw it. (On 2026-11-16 its sticker text was changed from "5 clues" to "8 clues · hardest first" for the 10-slide format; nothing else changed. The old file is `templates/cover_5clues_old.jpg`.)
@@ -12,9 +14,9 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
 - **This style must stay clearly different from the owner's One Piece account** (which uses colorful cartoon art, parchment clue cards, emoji rank badges and a yellow "?" ending). Never bring any of those elements in here.
 
 ## Steps for each run
-1. **Pick 2 characters** from Naruto / Naruto Shippuden (the original series; Boruto-only characters are out) that are NOT in `used.txt`.
+1. **Pick 3 characters** from Naruto / Naruto Shippuden (the original series; Boruto-only characters are out) that are NOT in `used.txt`.
    - Lean niche and hard: side characters and one-arc characters, not Team 7 or the most famous Hokage/Akatsuki leads.
-   - Make the two posts different difficulty levels: one "B-RANK MISSION" (hard) and one "S-RANK MISSION" (extreme).
+   - Make the three posts different difficulty levels: 11:50 AM = "B-RANK MISSION" (hard), 6:50 PM = "A-RANK MISSION" (harder), 11:50 PM = "S-RANK MISSION" (extreme).
 2. **Write 8 clues per character,** ordered hardest to easiest.
    - Clue 1 is obscure trivia; clue 8 is a near-giveaway (an epithet or iconic moment).
    - Pick characters with enough documented trivia for 8 verifiable clues (one-scene extras usually don't have enough).
@@ -59,14 +61,14 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
    - **photoCoverIndex:** 0
    - **autoAddMusic:** true. REQUIRED on every post, so TikTok attaches a trending sound to the carousel; posts without it publish silent. The owner wants sound on every post. (The Metricool API can't pick a specific song for TikTok; only this random-music option is available.)
    - **media**, in this order: `.../slides/cover.jpg`, then slide_2 … slide_10 of that character (10 items total)
-   - **times:** 11:50 and 23:50 America/New_York that day (NOT 12:00/00:00; the 10-minute lead covers TikTok processing). Both slots belong to the same calendar day as the run.
+   - **times:** 11:50, 18:50 and 23:50 America/New_York that day (NOT 12:00/19:00/00:00; the 10-minute lead covers TikTok processing). All three slots belong to the same calendar day as the run.
      - If a slot is less than 10 minutes away or already past, skip it, and make only as many characters as there are open slots.
      - First call `getScheduledPosts` for that day with blogId `8075815` (only this brand); if a slot already has a TikTok post, don't add another.
-   - **tiktokData.title (required by Metricool):** `Shinobi Quiz: B-RANK MISSION 📜` for the HARD post, `Shinobi Quiz: S-RANK MISSION 🔥📜` for the EXTREME post. Never put the answer in the title.
+   - **tiktokData.title (required by Metricool):** `Shinobi Quiz: B-RANK MISSION 📜` for the HARD post, `Shinobi Quiz: A-RANK MISSION 🎯📜` for the HARDER 7 PM post, `Shinobi Quiz: S-RANK MISSION 🔥📜` for the EXTREME post. Never put the answer in the title.
    - **Caption: the Naruto account's OWN "mission briefing" voice.** It must NOT reuse the One Piece account's wording ("Guess That Character", "HARD MODE 💀", "swipe through all 5 clues", "I'll pin the answer later", "who should I do next?", "got it on clue 1 = genius", skull emojis). Always a LONG description, 1,000–1,800 characters (owner's standing request), no line breaks (the TikTok API strips them), ending with
      `#naruto #narutoshippuden #narutoquiz #animequiz #shinobi #animetiktok`.
      Write it as a ninja mission briefing. It must include, in your own fresh wording each day (vary the sentences; don't paste the same caption twice):
-     - the mission rank up front ("📜 MISSION BRIEFING: B-RANK" / "📜 MISSION BRIEFING: S-RANK 🔥")
+     - the mission rank up front ("📜 MISSION BRIEFING: B-RANK" / "📜 MISSION BRIEFING: A-RANK 🎯" / "📜 MISSION BRIEFING: S-RANK 🔥")
      - a target teaser about the character type that gives nothing away (never names, villages, clans, teams or jutsu)
      - "8 scrolls, hardest to easiest" (unroll / open every scroll)
      - "drop your guess AND the scroll number that gave it away"
@@ -75,12 +77,12 @@ for **11:50 AM** and **11:50 PM America/New_York** (10 minutes early, because Ti
      - the rank brag ladder matching the slides: scroll 1 = Kage level, 2 = Sannin, 3 = ANBU, 4 = Jonin, 5 = Chunin, 6 = Genin, 7 = Academy, 8 = civilian
      - "tag your squad / your teammate who thinks they know every shinobi"
      - "which shinobi should be the next target?"
-     - "Follow for a new mission every day at 12 PM and 12 AM ET."
+     - "Follow for a new mission every day at 12 PM, 7 PM and 12 AM ET."
      Use only these emojis, sparingly: 📜 🔥 🍥 🥷 🎯 🍃. Example of the voice (do not copy verbatim):
      `📜 MISSION BRIEFING: S-RANK 🔥 Your target today is a face most fans forgot the second their arc ended, but they mattered more than you think. Intel has been split across 8 scrolls, hardest to easiest, so unroll every one before you lock in. Drop your guess AND the scroll number that gave it away in the comments 🎯 Answer gets pinned once the mission ends, so no edits after the reveal. Rules of engagement: no peeking, no copy ninja tactics, no search engine jutsu. Your rank depends on where you cracked it: scroll 1 = Kage level, scroll 2 = Sannin, scroll 3 = ANBU, scroll 4 = Jonin, scroll 5 = Chunin, scroll 6 = Genin, scroll 7 = Academy, scroll 8 = civilian, hang up the headband 🥷 ...`
    - **firstCommentText:** leave empty. Don't reveal the answer.
 9. **Record:**
-   - Append both names to `used.txt` with the date and scheduled time.
+   - Append all names to `used.txt` with the date and scheduled time.
    - Add the answers to `answers.md` (date, time, character, clues), so the owner can pin them.
    - Commit and push.
 10. **Report** in one short message which characters were scheduled for which times and their answers.
